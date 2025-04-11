@@ -7,13 +7,13 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter deposit amount ($) (no commas): ");
-        double principal = input.nextInt();
+        double principal = input.nextDouble();
 
         System.out.println("Enter annual interest rate. (e.g 2.35)");
         double annualInterestRate = input.nextDouble() / 100;
 
         System.out.println("Enter number of years: ");
-        int years = input.nextByte();
+        int years = input.nextInt();
 
         int dayPerYear = 365;
         double dailyRate = annualInterestRate / dayPerYear;
