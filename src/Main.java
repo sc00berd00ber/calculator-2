@@ -1,15 +1,31 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.text.NumberFormat;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        Scanner input = new Scanner(System.in);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        System.out.println("Enter deposit amount ($) (no commas): ");
+        double principal = input.nextInt();
+
+        System.out.println("Enter annual interest rate. (e.g 2.35)");
+        double annualInterestRate = input.nextDouble() / 100;
+
+        System.out.println("Enter number of years: ");
+        int years = input.nextByte();
+
+        int dayPerYear = 365;
+        double dailyRate = annualInterestRate / dayPerYear;
+        int totalDays = dayPerYear * years;
+
+        //FV = P × (1 + (r / 365))^(365 × t)
+        double futureValue = principal * Math.pow(1 + dailyRate, totalDays);
+        double totalInterest = futureValue - principal;
+
+        System.out.println("Future Value: " + currency.format(futureValue));
+        System.out.println("Total interest earned: " + currency.format(totalInterest));
+
+
     }
 }
